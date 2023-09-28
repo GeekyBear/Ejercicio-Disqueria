@@ -4,12 +4,19 @@ module.exports = function () {
     let { Musicians } = this.entities;
 
     // Cuando un músico tenga 6 horas, o más, de grabación en un día ganan 2 horas de grabación gratis ese día
-    this.after('READ', 'Sessions', (req) => {
-        for (let i = 0; i < req.length; i++) {
-            const session = req[i];
-            if (session.hours >= 6) {
-                session.hasFreeHours = true;
-            }
+    this.before('CREATE', 'Sessions', (req) => {
+        if (req.data.hours >= 6) {
+            req.data.hasFreeHours = true;
+        }
+    });
+
+
+    this.before('UPDATE', 'Sessions', (req) => {
+        if (req.data.hours >= 6) {
+            req.data.hasFreeHours = true;
+            req.data.hours = req.data.hours + 2;
+        } else {
+            req.data.hasFreeHours = false;
         }
     });
 

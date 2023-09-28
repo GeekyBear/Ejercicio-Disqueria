@@ -65,8 +65,8 @@ entity Records_Distribution : cuid, managed {
 }
 
 entity Sessions : cuid, managed {
-    key musician     : Association to Musicians;
-    key record       : Association to Records;
-        hasFreeHours : Boolean default false;
-        hours        : Integer;
+    musician     : Association to Musicians;
+    record       : Association to Records;
+    hasFreeHours : Boolean default false;
+    hours        : Integer;
 }

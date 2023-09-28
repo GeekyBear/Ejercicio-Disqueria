@@ -41,6 +41,6 @@ service disqueraService {
     action   CrearMusicos(orders : array of Musicians);
     action   CrearMusico(orders : Musicians);
     action   BorrarMusicos(value : array of UUID);
-    function consultarMusico(ID : UUID) returns Musicians;
+    function consultarMusico(ID : UUID) returns Musicians;   
 
 }
